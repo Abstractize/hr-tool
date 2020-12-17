@@ -73,8 +73,7 @@ namespace Server.Mapping
                     if(employee.ManagerId != null)
                         employeeData.IdManager = employeeRepository.GetAll()
                             .Result
-                            .Where(emp => emp.EmployeeId == employee.ManagerId)
-                            .FirstOrDefault()
+                            .FirstOrDefault(emp => emp.EmployeeId == employee.ManagerId)
                             .IdEmployee;
                 });
             #endregion
