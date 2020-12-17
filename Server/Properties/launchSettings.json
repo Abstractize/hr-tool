@@ -19,10 +19,9 @@
     },
     "Server": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchBrowser": false,
       "environmentVariables": {
-        "DB_CONNECTION_STRING": "\"Server=tcp:hrtool-db.database.windows.net,1433;Initial Catalog=HRTool-Database;Persist Security Info=False;User ID=Abstractize;Password=Leirbag36011999;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;\"",
+        "DB_CONNECTION_STRING": "Server=tcp:hrtool-db.database.windows.net,1433;Initial Catalog=HRTool-Database;Persist Security Info=False;User ID=Abstractize;Password=Leirbag36011999;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "URL": "https://localhost:5001"
       },

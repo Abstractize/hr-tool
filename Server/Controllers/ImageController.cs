@@ -11,13 +11,13 @@ namespace Server.Controllers
     [ApiController]
     public class ImageController : ControllerBase
     {
-        private readonly ImageRepository imageRepository;
-        private readonly IMapper _mapper;
+        private readonly IImageRepository imageRepository;
+        private readonly IMapper mapper;
 
-        public ImageController(ImageRepository imageRepository, IMapper mapper)
+        public ImageController(IImageRepository imageRepository, IMapper mapper)
         {
             this.imageRepository = imageRepository;
-            _mapper = mapper;
+            this.mapper = mapper;
         }
 
         [HttpPost]
@@ -33,7 +33,7 @@ namespace Server.Controllers
 
             var data = await imageRepository.Create(new Models.Image { Data = fileBytes });
 
-            return Ok(_mapper.Map<Resources.Image>(data));
+            return Ok(mapper.Map<Resources.Image>(data));
         }
 
         [HttpGet("{id}")]

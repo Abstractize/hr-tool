@@ -7,7 +7,7 @@ namespace Server.Mapping
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile(EmployeeRepository employeeRepository)
+        public MappingProfile(IEmployeeRepository employeeRepository)
         {
             string host = Environment.GetEnvironmentVariable("URL");
             #region Domain to Resource
@@ -23,7 +23,7 @@ namespace Server.Mapping
                      Models.EmployeeData data = null;
                      model.EmployeeDatumIdEmployeeNavigations.ToList().ForEach(empData =>
                      {
-                         if (data == null || data.RegisterDate > empData.RegisterDate)
+                         if (data == null || DateTime.Compare(data.RegisterDate, empData.RegisterDate) < 0)
                              data = empData;
                      });
                      resource.Picture = new Controllers.Resources.Image
@@ -31,10 +31,12 @@ namespace Server.Mapping
                          Id = data.IdImageNavigation.IdImage,
                          Url = $"{host}/image/{data.IdImageNavigation.IdImage}"
                      };
+                     resource.Name = data.Name;
                      resource.PhoneNumber = data.PhoneNumber;
                      resource.Email = data.Email;
                      resource.HireDate = data.HireDate;
-                     resource.ManagerId = data.IdManagerNavigation.EmployeeId;
+                     if(data.IdManagerNavigation != null)
+                        resource.ManagerId = data.IdManagerNavigation.EmployeeId;
                  });
 
             CreateMap<Models.EmployeeData, Controllers.Resources.Employee>()
@@ -68,11 +70,12 @@ namespace Server.Mapping
                 .ForMember(empd => empd.HireDate, opt => opt.MapFrom(emp => emp.HireDate))
                 .AfterMap((employee, employeeData) =>
                 {
-                    employeeData.IdManager = employeeRepository.GetAll()
-                        .Result
-                        .Where(emp => emp.EmployeeId == employee.EmployeeId)
-                        .FirstOrDefault()
-                        .IdEmployee;
+                    if(employee.ManagerId != null)
+                        employeeData.IdManager = employeeRepository.GetAll()
+                            .Result
+                            .Where(emp => emp.EmployeeId == employee.ManagerId)
+                            .FirstOrDefault()
+                            .IdEmployee;
                 });
             #endregion
         }

@@ -1,28 +1,36 @@
-﻿using Server.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Server.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Server.Persistence
 {
-    public class EmployeeDataRepository : Repository<EmployeeData>
+    public class EmployeeDataRepository : Repository<EmployeeData>, IEmployeeDataRepository
     {
         public EmployeeDataRepository(EmployeeContext context) : base(context)
         {
         }
 
-        public override Task<EmployeeData> Create(EmployeeData value)
+        public override async Task<EmployeeData> Create(EmployeeData value)
         {
-            throw new System.NotImplementedException();
+            var entity = await context.EmployeeData.AddAsync(value);
+            await context.SaveChangesAsync();
+            return entity.Entity;
         }
 
-        public override Task<EmployeeData> Get(int id)
+        public override async Task<EmployeeData> Get(int id)
         {
-            throw new System.NotImplementedException();
+            var entity = await context.EmployeeData
+                .Include(data => data.IdEmployeeNavigation)
+                .Include(data => data.IdManagerNavigation)
+                .Include(data => data.IdImageNavigation)
+                .SingleOrDefaultAsync(data => data.IdEmployeeData == id);
+            return entity;
         }
 
-        public override Task<IEnumerable<EmployeeData>> GetAll()
+        public override async Task<IEnumerable<EmployeeData>> GetAll()
         {
-            throw new System.NotImplementedException();
+            return await context.EmployeeData.ToListAsync();
         }
     }
 }

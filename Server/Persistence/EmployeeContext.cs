@@ -1,6 +1,8 @@
 ﻿using System;
-using Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Server.Models;
+
+#nullable disable
 
 namespace Server.Persistence
 {
@@ -45,7 +47,7 @@ namespace Server.Persistence
             modelBuilder.Entity<EmployeeData>(entity =>
             {
                 entity.HasKey(e => e.IdEmployeeData)
-                    .HasName("PK__Employee__B0719101553E74D5");
+                    .HasName("PK__Employee__B0719101E92DA8F3");
 
                 entity.Property(e => e.Email).IsUnicode(false);
 
@@ -59,12 +61,18 @@ namespace Server.Persistence
                     .WithMany(p => p.EmployeeDatumIdEmployeeNavigations)
                     .HasForeignKey(d => d.IdEmployee)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__EmployeeD__IdEmp__628FA481");
+                    .HasConstraintName("FK__EmployeeD__IdEmp__6C190EBB");
+
+                entity.HasOne(d => d.IdImageNavigation)
+                    .WithMany(p => p.EmployeeData)
+                    .HasForeignKey(d => d.IdImage)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__EmployeeD__IdIma__6B24EA82");
 
                 entity.HasOne(d => d.IdManagerNavigation)
                     .WithMany(p => p.EmployeeDatumIdManagerNavigations)
                     .HasForeignKey(d => d.IdManager)
-                    .HasConstraintName("FK__EmployeeD__IdMan__6383C8BA");
+                    .HasConstraintName("FK__EmployeeD__IdMan__6D0D32F4");
             });
 
             modelBuilder.Entity<Image>(entity =>

@@ -14,6 +14,7 @@ namespace Server.Persistence
         public async override Task<Image> Create(Image value)
         {
             var result = await context.Images.AddAsync(value);
+            await context.SaveChangesAsync();
             return result.Entity;
         }
 
