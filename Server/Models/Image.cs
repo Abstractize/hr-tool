@@ -20,5 +20,7 @@ namespace Server.Models
 
         [InverseProperty(nameof(Models.EmployeeData.IdImageNavigation))]
         public virtual ICollection<EmployeeData> EmployeeData { get; set; }
+
+        public static Image Empty { get => new Image { IdImage = 0, Data = new byte[0] }; }
     }
 }

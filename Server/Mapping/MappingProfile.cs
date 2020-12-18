@@ -26,6 +26,9 @@ namespace Server.Mapping
                          if (data == null || DateTime.Compare(data.RegisterDate, empData.RegisterDate) < 0)
                              data = empData;
                      });
+                     if (data == null)
+                         data = Models.EmployeeData.Empty;
+
                      resource.Picture = new Controllers.Resources.Image
                      {
                          Id = data.IdImageNavigation.IdImage,

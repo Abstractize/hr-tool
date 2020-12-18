@@ -21,7 +21,7 @@ namespace Server.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateImage([FromForm] IFormFile image)
+        public async Task<IActionResult> Post([FromForm] IFormFile image)
         {
             byte[] fileBytes;
 
@@ -37,7 +37,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetImage(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var result = await imageRepository.Get(id);
             byte[] images = result.Data;

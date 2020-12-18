@@ -36,5 +36,20 @@ namespace Server.Models
         [ForeignKey(nameof(IdManager))]
         [InverseProperty(nameof(Employee.EmployeeDatumIdManagerNavigations))]
         public virtual Employee IdManagerNavigation { get; set; }
+
+        public static EmployeeData Empty { get => new EmployeeData{
+                IdEmployeeData = 0,
+                IdEmployee = 0,
+                RegisterDate = DateTime.Now,
+                Name = "",
+                IdImage = 0,
+                PhoneNumber = "",
+                Email = "",
+                HireDate = DateTime.Now,
+                IdManager = 0,
+                IdEmployeeNavigation = Employee.Empty,
+                IdImageNavigation = Image.Empty,
+                IdManagerNavigation = Employee.Empty
+            }; }
     }
 }

@@ -27,5 +27,17 @@ namespace Server.Models
         public virtual ICollection<EmployeeData> EmployeeDatumIdEmployeeNavigations { get; set; }
         [InverseProperty(nameof(EmployeeData.IdManagerNavigation))]
         public virtual ICollection<EmployeeData> EmployeeDatumIdManagerNavigations { get; set; }
+
+        public static Employee Empty
+        {
+            get => new Employee
+            {
+                IdEmployee = 0,
+                EmployeeId = "",
+                IsActive = true,
+                EmployeeDatumIdEmployeeNavigations = new List<EmployeeData>(),
+                EmployeeDatumIdManagerNavigations = new List<EmployeeData>()
+            };
+        }
     }
 }
