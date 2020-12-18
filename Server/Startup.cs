@@ -1,15 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Server.Mapping;
+using Server.Persistence;
 
 namespace Server
 {
@@ -25,6 +23,32 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+            services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = long.MaxValue);
+
+            services.AddDbContext<EmployeeContext>();
+            services.AddScoped<EmployeeContext>();
+
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeDataRepository, EmployeeDataRepository>();
+
+            services.AddScoped(provider => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile(
+                    provider.GetService<IEmployeeRepository>()
+                    ));
+            }).CreateMapper());
+
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers();
         }
 
