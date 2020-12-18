@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -6,7 +7,19 @@ import { environment } from '../../../environments/environment';
 })
 export class ImageService {
   api : string = environment.APIEndpoint;
-  constructor() { }
+  controller: string = 'image';
+  url: string;
+  constructor(private readonly http: HttpClient) {
+    this.url =`${this.api}/${this.controller}`;
+    console.log(this.url);
+  }
 
-
+  post(value: FormData){
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    return this.http.post(this.url, value, config);
+  }
 }
