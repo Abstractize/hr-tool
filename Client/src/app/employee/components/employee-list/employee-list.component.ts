@@ -7,12 +7,9 @@ import { EmployeeService } from '../../services/employee/employee.service'
 })
 export class EmployeeListComponent implements OnInit {
 
-  constructor(private readonly employeeService: EmployeeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.employeeService.GetAll().subscribe(data => {
-      console.log(data);
-    })
   }
 
 }

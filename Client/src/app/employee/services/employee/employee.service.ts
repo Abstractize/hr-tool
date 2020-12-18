@@ -15,19 +15,19 @@ export class EmployeeService {
     console.log(this.url);
   }
 
-  Post(value: Employee){
+  post(value: Employee){
     return this.http.post(this.url,value);
   }
-  Get(id: number){
+  get(id: number){
     return this.http.get(`${this.url}/${id}`);
   }
-  GetAll(){
+  getAll(){
     return this.http.get(this.url);
   }
-  Put(value: Employee){
+  put(value: Employee){
     return this.http.put(this.url,value);
   }
-  Delte(id: number){
+  delete(id: number){
     return this.http.delete(`${this.url}/${id}`);
   }
 }
