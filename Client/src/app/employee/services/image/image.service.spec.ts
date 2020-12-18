@@ -31,8 +31,6 @@ describe('ImageService', () => {
     request.flush(new Image('',0));
   });
 
-
-
   afterEach(() => {
     httpMock.verify();
   });

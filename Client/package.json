@@ -23,13 +23,14 @@
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "bootstrap": "^4.5.0",
     "karma-junit-reporter": "^2.0.1",
+    "puppeteer": "^5.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.5",
-    "@angular/cli": "~10.1.2",
+    "@angular/cli": "^10.2.1",
     "@angular/compiler-cli": "~10.1.2",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
