@@ -14,11 +14,13 @@ export class EmployeeListComponent implements OnInit {
   constructor(private readonly service: EmployeeService) {
     service.getAll().subscribe((result) => {
       this.allEmployees = result;
+      this.employees = this.allEmployees;
     });
-    this.employees = this.allEmployees;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   search(): void {
     this.employees = this.allEmployees

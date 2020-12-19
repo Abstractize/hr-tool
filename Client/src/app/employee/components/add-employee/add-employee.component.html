@@ -1,1 +1,104 @@
-<p>add-employee works!</p>
+<h1>Add an Employee</h1>
+<form [formGroup]="formValues">
+  <div class="jumbotron">
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="id">Employee ID</label>
+        <input
+          type="text"
+          class="form-control"
+          id="idEmp"
+          aria-describedby="idEmployee"
+          placeholder="ex. ID0000"
+          formControlName="employeeId"
+          required
+        />
+        <small *ngIf="formValues.controls['employeeId'].errors.required" id="emailHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="id">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="idEmp"
+          aria-describedby="idEmployee"
+          placeholder="ex. Name Lastname1 Lastname2"
+          formControlName="name"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label for="id">Picture</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-1 mb-3"></div>
+      <div class="col-md-4 mb-3">
+        <img
+          class="card-img-top"
+          src="{{ imageValue.url }}"
+          width="300"
+          height="200"
+        />
+      </div>
+      <div class="col-md-1 mb-3"></div>
+      <div class="col-md-6 mb-3">
+        <input (change)="onFileSelected($event)"type="file" class="custom-file-input" id="customFile" />
+        <label class="custom-file-label" for="customFile"
+          >Choose an Image</label
+        >
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="id">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          id="idEmp"
+          aria-describedby="idEmployee"
+          placeholder="+506 8888-8888"
+          formControlName="phone"
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="id">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="idEmp"
+          aria-describedby="idEmployee"
+          placeholder="email@email.com"
+          formControlName="email"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="id">Hire Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="idEmp"
+          aria-describedby="idEmployee"
+          formControlName="hire"
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="id">Manger Id</label>
+        <input
+          type="text"
+          class="form-control"
+          id="idEmp"
+          aria-describedby="idEmployee"
+          placeholder="ex. ID0000"
+          formControlName="managerId"
+        />
+      </div>
+    </div>
+    <br />
+    <button (click)="onSubmit()" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
