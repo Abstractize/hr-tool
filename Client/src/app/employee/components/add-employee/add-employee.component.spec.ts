@@ -71,11 +71,36 @@ describe('AddEmployeeComponent', () => {
     component.formValues.clearValidators();
 
     component.formValues.updateValueAndValidity();
-    console.log(component.formValues);
     component.onSubmit();
     const request = httpMock.expectOne(`${eService.url}`);
     expect(request.request.method).toBe('POST');
     request.flush(resp);
   });
 
+  it('shouldNotPost', () => {
+    component.onSubmit();
+    expect().nothing();
+  });
+
+  it('shouldPostWithManager', () => {
+    const resp = emptyEmployee;
+    resp.id = 0;
+    component.imageValue = resp.picture;
+    component.formValues.patchValue({
+      employeeId: resp.employeeId,
+      name: resp.name,
+      phone: resp.phoneNumber,
+      email: resp.email,
+      hire: resp.hireDate,
+      managerId: resp.employeeId
+    })
+    component.formValues.markAllAsTouched();
+    component.formValues.clearValidators();
+
+    component.formValues.updateValueAndValidity();
+    component.onSubmit();
+    const request = httpMock.expectOne(`${eService.url}`);
+    expect(request.request.method).toBe('POST');
+    request.flush(resp);
+  });
 });

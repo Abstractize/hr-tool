@@ -22,4 +22,15 @@ describe('NavMenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should collapse', () => {
+    component.collapse();
+    expect(component.isExpanded).toBeFalse();
+  });
+
+  it('should toggle', () => {
+    const boolean = !component.isExpanded;
+    component.toggle();
+    expect(component.isExpanded).toBe(boolean);
+  });
 });
