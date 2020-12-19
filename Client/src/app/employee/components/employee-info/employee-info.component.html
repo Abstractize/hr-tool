@@ -48,6 +48,7 @@
                   placeholder="{{ employee.employeeId }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="employeeId"
                   [readonly]="readonly.empId"
                 />
                 <div class="input-group-append">
@@ -70,6 +71,7 @@
                   placeholder="{{ employee.name }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="name"
                   [readonly]="readonly.name"
                 />
                 <div class="input-group-append">
@@ -94,6 +96,7 @@
                   placeholder="{{ employee.phoneNumber }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="phone"
                   [readonly]="readonly.phone"
                 />
                 <div class="input-group-append">
@@ -116,6 +119,7 @@
                   placeholder="{{ employee.email }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="email"
                   [readonly]="readonly.email"
                 />
                 <div class="input-group-append">
@@ -164,6 +168,7 @@
                   placeholder="{{ employee.managerId }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="managerId"
                   [readonly]="readonly.managerId"
                 />
                 <div class="input-group-append">
@@ -193,7 +198,7 @@
     <button
       type="button"
       class="btn btn-secondary"
-      (click)="activeModal.close('Close click')"
+      (click)="update()"
     >
       Update
     </button>

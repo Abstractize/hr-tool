@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DialogInformationComponent } from 'src/app/core/components/dialog-information/dialog-information.component';
 import { Employee } from '../../models/employee';
 import { Image } from '../../models/image';
+import { EmployeeService } from '../../services/employee/employee.service';
 import { ImageService } from '../../services/image/image.service';
 
 interface ITimeWorking{
@@ -35,7 +37,9 @@ export class EmployeeInfoComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private readonly imageService: ImageService
+    private readonly imageService: ImageService,
+    private readonly employeeService: EmployeeService,
+    private readonly modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -73,5 +77,37 @@ export class EmployeeInfoComponent implements OnInit {
     this.imageService
       .post(fd)
       .subscribe((response) => (this.imageValue = response));
+  }
+
+  update(){
+    if(this.formValues.touched){
+      const values = this.formValues.value;
+      let value = new Employee(
+        values.employeeId,
+        values.name,
+        this.imageValue,
+        values.phone,
+        values.email,
+        values.hire,
+      );
+      if(values.managerId !== '')
+        value.managerId = values.managerId;
+      value.id = this.employee.id;
+      this.employeeService.put(value).subscribe((res) => {
+        const modal = this.modalService
+        .open(DialogInformationComponent, { centered: true, size: 'sm' })
+        const modalRef: DialogInformationComponent = modal.componentInstance;
+        modalRef.title = 'Success!'
+        modalRef.body = `Employee ${res.name}, ID: ${res.id}, has been updated`;
+        modal.closed.subscribe(() => this.activeModal.close());
+      });
+    }else{
+      const modalRef: DialogInformationComponent = this.modalService
+          .open(DialogInformationComponent, { centered: true, size: 'sm' })
+          .componentInstance;
+        modalRef.title = 'Fail'
+        modalRef.body = `Employee ${this.employee.name}'s info hasn't change`;
+    }
+
   }
 }
