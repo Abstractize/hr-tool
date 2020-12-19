@@ -12,22 +12,21 @@ export class EmployeeService {
   url: string;
   constructor(private readonly http: HttpClient) {
     this.url =`${this.api}/${this.controller}`;
-    console.log(this.url);
   }
 
   post(value: Employee){
-    return this.http.post(this.url,value);
+    return this.http.post<Employee>(this.url,value);
   }
   get(id: number){
-    return this.http.get(`${this.url}/${id}`);
+    return this.http.get<Employee>(`${this.url}/${id}`);
   }
   getAll(){
-    return this.http.get(this.url);
+    return this.http.get<Employee[]>(this.url);
   }
   put(value: Employee){
-    return this.http.put(this.url,value);
+    return this.http.put<Employee>(this.url,value);
   }
   delete(id: number){
-    return this.http.delete(`${this.url}/${id}`);
+    return this.http.delete<Employee>(`${this.url}/${id}`);
   }
 }
