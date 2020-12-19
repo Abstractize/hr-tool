@@ -2,7 +2,7 @@ import { Image } from "./image";
 
 export class Employee{
   constructor(
-    public idEmployee: string,
+    public employeeId: string,
     public name: string,
     public picture: Image,
     public phoneNumber: string,

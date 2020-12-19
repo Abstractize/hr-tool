@@ -6,6 +6,7 @@ import { ImageService } from './services/image/image.service';
 import { EmployeeService } from './services/employee/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeRoutingModule } from './employee-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,15 +18,12 @@ import { EmployeeRoutingModule } from './employee-routing.module';
   imports: [
     CommonModule,
     HttpClientModule,
-    EmployeeRoutingModule
+    EmployeeRoutingModule,
+    FormsModule
   ],
   providers: [
     ImageService,
     EmployeeService
-  ],
-  exports: [
-    EmployeeListComponent,
-    AddEmployeeComponent
   ]
 })
 export class EmployeeModule { }

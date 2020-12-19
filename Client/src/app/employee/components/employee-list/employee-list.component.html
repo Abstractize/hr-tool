@@ -1,1 +1,25 @@
-<p>employee-list works!</p>
+<h1 id="tableLabel">Employees</h1>
+
+<p *ngIf="!allEmployees"><em>Loading...</em></p>
+<div class="jumbotron">
+  <div class="input-group mb-3">
+    <input id="filter" type="text" class="form-control" placeholder="Name or Id" aria-label="Name or Id" aria-describedby="basic-addon2" [(ngModel)]="filter">
+    <div class="input-group-append">
+      <button (click)="search()" class="btn btn-outline-secondary" type="button">Search</button>
+    </div>
+  </div>
+  <div>
+      <tr *ngFor="let employee of employees">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src={{employee.picture.url}} alt="Card image cap" width="300" height="200">
+          <div class="card-body">
+            <h5 class="card-title">{{ employee.name }}</h5>
+            <p class="card-text">{{ employee.employeeId }}</p>
+            <a href="#" class="btn btn-primary">Info</a>
+          </div>
+        </div>
+      </tr>
+  </div>
+</div>
+
+

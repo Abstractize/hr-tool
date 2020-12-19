@@ -11,7 +11,6 @@ export class ImageService {
   url: string;
   constructor(private readonly http: HttpClient) {
     this.url =`${this.api}/${this.controller}`;
-    console.log(this.url);
   }
 
   post(value: FormData){
