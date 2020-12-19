@@ -15,16 +15,18 @@ export class EmployeeListComponent implements OnInit {
     service.getAll().subscribe((result) => {
       this.allEmployees = result;
     });
+    this.employees = this.allEmployees;
   }
 
   ngOnInit(): void {}
 
   search(): void {
-    this.employees = this.allEmployees.filter(
-      (employee) =>
-        (employee.name.includes(this.filter) ||
-        employee.employeeId.includes(this.filter)) &&
-        this.filter !== ''
-    );
+    this.employees = this.allEmployees
+      .filter(
+        (employee) =>
+          employee.name.includes(this.filter) ||
+          employee.employeeId.includes(this.filter)
+      )
+      .sort((a, b) => (a.name > b.name ? -1 : 1));
   }
 }
