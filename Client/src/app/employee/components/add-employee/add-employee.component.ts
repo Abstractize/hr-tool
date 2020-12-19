@@ -29,7 +29,7 @@ export class AddEmployeeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    console.log("INIT");
+
   }
 
   async onFileSelected(event){
@@ -38,7 +38,7 @@ export class AddEmployeeComponent implements OnInit {
 
     fd.append('image',file,file.name);
 
-    await this.imageService.post(fd).subscribe(response =>
+    this.imageService.post(fd).subscribe(response =>
       this.imageValue = response
     )
   }
