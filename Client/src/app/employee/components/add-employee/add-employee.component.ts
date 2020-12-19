@@ -15,8 +15,8 @@ export class AddEmployeeComponent implements OnInit {
   formValues = new FormGroup({
     employeeId: new FormControl('',[Validators.required]),
     name: new FormControl('',[Validators.required]),
-    phone: new FormControl('',[Validators.required,Validators.pattern("1?-?\.?\(?\d{3}[\-\)\.\s]?\d{3}[\-\.\s]?\d{4}")]),
-    email: new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    phone: new FormControl('',[Validators.required,Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")]),
+    email: new FormControl('',[Validators.required,Validators.email]),
     hire: new FormControl(new Date(),[Validators.required]),
     managerId: new FormControl('')
   });
@@ -29,6 +29,7 @@ export class AddEmployeeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log("INIT");
   }
 
   async onFileSelected(event){
@@ -43,7 +44,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.formValues.valid){
+    if(this.formValues.valid && this.imageValue.id){
       const values = this.formValues.value;
       let value = new Employee(
         values.employeeId,
@@ -58,8 +59,6 @@ export class AddEmployeeComponent implements OnInit {
       this.employeeService.post(value).subscribe(() =>
         this.router.navigateByUrl('/')
       );
-    }else{
-      console.log(this.formValues);
     }
   }
 }

@@ -14,7 +14,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(private readonly service: EmployeeService) {
     service.getAll().subscribe((result) => {
       this.allEmployees = result;
-      this.employees = this.allEmployees;
+      this.employees = this.allEmployees.sort((a, b) => (a.name < b.name ? -1 : 1));;
     });
   }
 
