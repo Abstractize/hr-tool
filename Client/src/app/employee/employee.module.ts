@@ -7,20 +7,26 @@ import { EmployeeService } from './services/employee/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmployeeInfoComponent } from './components/employee-info/employee-info.component';
+import { NgbDatepickerModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
   declarations: [
     AddEmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeInfoComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     EmployeeRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
+    NgbModalModule,
+    NgbDatepickerModule
   ],
   providers: [
     ImageService,

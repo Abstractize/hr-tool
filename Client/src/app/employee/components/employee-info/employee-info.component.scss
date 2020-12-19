@@ -1,0 +1,62 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+}
+.Picture {
+  margin: auto;
+  grid-area: 1 / 1 / 4 / 3;
+}
+.Info {
+  margin: auto;
+  grid-area: 1 / 3 / 4 / 5;
+}
+.Info-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "EmployeeId EmployeeId EmployeeId"
+    "Name Name Name";
+  grid-area: 1 / 3 / 2 / 5;
+}
+.EmployeeId {
+  grid-area: EmployeeId;
+}
+.Name {
+  grid-area: Name;
+}
+.Info-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Phone Phone Phone"
+    "Email Email Email";
+  grid-area: 2 / 3 / 3 / 5;
+}
+.Phone {
+  grid-area: Phone;
+}
+.Email {
+  grid-area: Email;
+}
+.Info-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "hireDate hireDate hireDate"
+    "managerId managerId managerId";
+  grid-area: 3 / 3 / 4 / 5;
+}
+.hireDate {
+  grid-area: hireDate;
+}
+.managerId {
+  grid-area: managerId;
+}

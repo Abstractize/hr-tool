@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -11,7 +13,10 @@ export class EmployeeListComponent implements OnInit {
   public employees: Employee[];
   public filter: string;
 
-  constructor(private readonly service: EmployeeService) {
+  constructor(
+    service: EmployeeService,
+    private readonly modalService: NgbModal
+    ) {
     service.getAll().subscribe((result) => {
       this.allEmployees = result;
       this.employees = this.allEmployees;
@@ -23,12 +28,19 @@ export class EmployeeListComponent implements OnInit {
 
   }
 
+  open(employee: Employee) {
+    const modalRef: EmployeeInfoComponent = this.modalService
+      .open(EmployeeInfoComponent, { centered: true, size: 'lg', scrollable: true })
+      .componentInstance;
+    modalRef.employee = employee;
+  }
+
   search(): void {
     this.employees = this.allEmployees
       .filter(
         (employee) =>
-          employee.name.includes(this.filter) ||
-          employee.employeeId.includes(this.filter)
+          employee.name.toLowerCase().includes(this.filter) ||
+          employee.employeeId.toLowerCase().includes(this.filter)
       )
       .sort((a, b) => (a.name < b.name ? -1 : 1));
   }
