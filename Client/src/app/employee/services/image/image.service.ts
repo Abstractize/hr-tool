@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { Image } from '../../models/image';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,6 @@ export class ImageService {
   }
 
   post(value: FormData){
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    };
-    return this.http.post(this.url, value, config);
+    return this.http.post<Image>(this.url, value);
   }
 }

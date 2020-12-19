@@ -6,7 +6,7 @@ import { ImageService } from './services/image/image.service';
 import { EmployeeService } from './services/employee/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeRoutingModule } from './employee-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     HttpClientModule,
     EmployeeRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ImageService,

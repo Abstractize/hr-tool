@@ -14,11 +14,14 @@ export class EmployeeListComponent implements OnInit {
   constructor(private readonly service: EmployeeService) {
     service.getAll().subscribe((result) => {
       this.allEmployees = result;
+      this.employees = this.allEmployees;
+      this.employees.sort((a, b) => (a.name < b.name ? -1 : 1));
     });
-    this.employees = this.allEmployees;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   search(): void {
     this.employees = this.allEmployees
@@ -27,6 +30,6 @@ export class EmployeeListComponent implements OnInit {
           employee.name.includes(this.filter) ||
           employee.employeeId.includes(this.filter)
       )
-      .sort((a, b) => (a.name > b.name ? -1 : 1));
+      .sort((a, b) => (a.name < b.name ? -1 : 1));
   }
 }
