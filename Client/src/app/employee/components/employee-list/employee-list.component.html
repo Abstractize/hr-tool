@@ -34,7 +34,7 @@
             <img
               class="card-img-top"
               src="{{ employee.picture.url }}"
-              alt="Card image cap"
+              alt="Image not found"
               width="300"
               height="200"
             />
@@ -43,7 +43,13 @@
 
               <p class="card-text">Id: {{ employee.employeeId }}</p>
 
-              <a href="#" class="btn btn-primary">Info</a>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="open(employee)"
+              >
+                Info
+              </button>
             </div>
           </div>
         </div>

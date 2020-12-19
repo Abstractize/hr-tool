@@ -1,0 +1,64 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h1>
+      {{ employee.name }}
+    </h1>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="grid-container">
+      <div class="Picture">
+        <img
+        class="card-img-top"
+        src="{{ imageValue.url }}"
+        alt="Employee Image Not Loaded. Try Again!"
+        width="300"
+        height="200"
+      />
+      </div>
+      <div class="Info"></div>
+      <div class="Info-1">
+        <div class="EmployeeId"></div>
+        <div class="Name"></div>
+      </div>
+      <div class="Info-2">
+        <div class="Phone"></div>
+        <div class="Email"></div>
+      </div>
+      <div class="Info-3">
+        <div class="hireDate"></div>
+        <div class="managerId"></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="activeModal.close('Close click')"
+    >
+      Delete
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="activeModal.close('Close click')"
+    >
+      Update
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="activeModal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
+</div>
