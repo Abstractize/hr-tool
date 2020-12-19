@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeInfoComponent } from './components/employee-info/employee-info.component';
-import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -25,7 +25,8 @@ import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgbModalModule
+    NgbModalModule,
+    NgbDatepickerModule
   ],
   providers: [
     ImageService,

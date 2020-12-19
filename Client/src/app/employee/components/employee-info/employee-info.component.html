@@ -15,26 +15,170 @@
   <div class="modal-body">
     <div class="grid-container">
       <div class="Picture">
-        <img
-        class="card-img-top"
-        src="{{ imageValue.url }}"
-        alt="Employee Image Not Loaded. Try Again!"
-        width="300"
-        height="200"
-      />
+        <div class="jumbotron">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="{{ imageValue.url }}"
+              alt="Employee Image Not Loaded. Try Again!"
+              width="300"
+              height="300"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Time worked for the company:</h5>
+              <p class="card-text">
+                Years: {{timeWorking.years}}
+                Months: {{timeWorking.months}}
+                Days: {{timeWorking.days}}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="Info"></div>
-      <div class="Info-1">
-        <div class="EmployeeId"></div>
-        <div class="Name"></div>
-      </div>
-      <div class="Info-2">
-        <div class="Phone"></div>
-        <div class="Email"></div>
-      </div>
-      <div class="Info-3">
-        <div class="hireDate"></div>
-        <div class="managerId"></div>
+      <div class="Info">
+        <form [formGroup]="formValues">
+          <div class="Info-1">
+            <div class="EmployeeId">
+              <div class="input-group mb-1"></div>
+              <h6 for="id">Employee ID:</h6>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ employee.employeeId }}"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  [readonly]="readonly.empId"
+                />
+                <div class="input-group-append">
+                  <button
+                    (click)="readonly.empId = !readonly.empId"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="Name">
+              <h6 for="id">Name:</h6>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ employee.name }}"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  [readonly]="readonly.name"
+                />
+                <div class="input-group-append">
+                  <button
+                    (click)="readonly.name = !readonly.name"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="Info-2">
+            <div class="Phone">
+              <h6 for="id">Phone:</h6>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ employee.phoneNumber }}"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  [readonly]="readonly.phone"
+                />
+                <div class="input-group-append">
+                  <button
+                    (click)="readonly.phone = !readonly.phone"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="Email">
+              <h6 for="id">Email:</h6>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ employee.email }}"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  [readonly]="readonly.email"
+                />
+                <div class="input-group-append">
+                  <button
+                    (click)="readonly.email = !readonly.email"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="Info-3">
+            <div class="hireDate">
+              <h6 for="id">Hire Date:</h6>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  onfocus="(this.type='date')"
+                  onblur="(this.type='text')"
+                  placeholder="{{ employee.hireDate.toDateString() }}"
+                  formControlName="hire"
+                  [readonly]="readonly.hireDate"
+                />
+                <div class="input-group-append">
+                  <button
+                    (click)="readonly.hireDate = !readonly.hireDate"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="managerId">
+              <div class="input-group mb-1"></div>
+              <h6 for="id">Manager ID:</h6>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ employee.managerId }}"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  [readonly]="readonly.managerId"
+                />
+                <div class="input-group-append">
+                  <button
+                    (click)="readonly.managerId = !readonly.managerId"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

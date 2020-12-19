@@ -29,7 +29,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   open(employee: Employee) {
-    const modalRef: EmployeeInfoComponent = this.modalService.open(EmployeeInfoComponent, { centered: true, size: 'lg' }).componentInstance;
+    const modalRef: EmployeeInfoComponent = this.modalService
+      .open(EmployeeInfoComponent, { centered: true, size: 'lg', scrollable: true })
+      .componentInstance;
     modalRef.employee = employee;
   }
 
