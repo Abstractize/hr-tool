@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from '../../models/employee';
 import { Image } from '../../models/image';
@@ -29,6 +29,7 @@ describe('EmployeeInfoComponent', () => {
     await TestBed.configureTestingModule({
       imports:[
         HttpClientTestingModule,
+        RouterTestingModule.withRoutes([]),
       ],
       declarations: [ EmployeeInfoComponent ],
       providers: [NgbActiveModal, ImageService]

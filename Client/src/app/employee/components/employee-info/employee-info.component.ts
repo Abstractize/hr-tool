@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogInformationComponent } from 'src/app/core/components/dialog-information/dialog-information.component';
 import { Employee } from '../../models/employee';
@@ -19,6 +20,7 @@ interface ITimeWorking {
 })
 export class EmployeeInfoComponent implements OnInit {
   modal;
+  imageChange: boolean = false;
   modalRef: DialogInformationComponent;
   employee: Employee;
   imageValue: Image;
@@ -41,12 +43,14 @@ export class EmployeeInfoComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private readonly imageService: ImageService,
     private readonly employeeService: EmployeeService,
-    private readonly modalService: NgbModal
+    private readonly modalService: NgbModal,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
     this.imageValue = this.employee.picture;
     this.employee.hireDate = new Date(this.employee.hireDate);
+
     this.formValues = new FormGroup({
       employeeId: new FormControl(this.employee.employeeId),
       name: new FormControl(this.employee.name),
@@ -74,11 +78,14 @@ export class EmployeeInfoComponent implements OnInit {
 
     this.imageService
       .post(fd)
-      .subscribe((response) => (this.imageValue = response));
+      .subscribe((response) => {
+        this.imageValue = response;
+        this.imageChange = true;
+      });
   }
 
   update() {
-    if (this.formValues.touched && this.formValues.valid) {
+    if ((this.formValues.touched && this.formValues.valid) || this.imageChange) {
       const values = this.formValues.value;
       let value = new Employee(
         values.employeeId,
@@ -100,6 +107,7 @@ export class EmployeeInfoComponent implements OnInit {
         this.modalRef.title = 'Success!';
         this.modalRef.body = `Employee ${res.name}, ID: ${res.id}, has been updated`;
         this.modal.closed.subscribe(() => this.activeModal.close());
+        this.router.navigateByUrl('/')
       });
     } else {
       this.modal = this.modalService.open(DialogInformationComponent, {

@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { EventEmitter } from '@angular/core';
 import {
   HttpClientTestingModule,
   HttpTestingController,
