@@ -12,6 +12,7 @@ export class EmployeeListComponent implements OnInit {
   public allEmployees: Employee[];
   public employees: Employee[];
   public filter: string;
+  public modalRef: EmployeeInfoComponent;
 
   constructor(
     service: EmployeeService,
@@ -29,10 +30,10 @@ export class EmployeeListComponent implements OnInit {
   }
 
   open(employee: Employee) {
-    const modalRef: EmployeeInfoComponent = this.modalService
+    this.modalRef = this.modalService
       .open(EmployeeInfoComponent, { centered: true, size: 'lg', scrollable: true })
       .componentInstance;
-    modalRef.employee = employee;
+    this.modalRef.employee = employee;
   }
 
   search(): void {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import {
   NgbActiveModal,
   NgbModal,
@@ -136,7 +135,7 @@ export class EmployeeInfoComponent implements OnInit {
     this.modalRef.body = `Are you sure you want to delete the employee ${this.employee.name}?`;
     let deleted: boolean = false;
     await this.closeValue().then((value) => (deleted = value));
-    console.log(deleted);
+
     if (deleted) {
       this.employeeService.delete(this.employee.id).subscribe((res) => {
         this.modal = this.modalService.open(DialogInformationComponent, {

@@ -58,4 +58,9 @@ describe('EmployeeListComponent', () => {
     expect(component.employees).toBeTruthy();
   });
 
+  it('should open a modal', () => {
+    emptyEmployee.id = 1;
+    component.open(emptyEmployee);
+    expect(component.modalRef.employee.id).toBe(emptyEmployee.id);
+  });
 });

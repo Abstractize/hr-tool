@@ -124,4 +124,20 @@ describe('EmployeeInfoComponent', () => {
     request.flush([resp]);
     expect(component.modalRef.title).toBe('Success!');
   });
+
+  it('should not delete', async () => {
+    component.modal = modalService.open(DialogInformationComponent, {
+      centered: true,
+      size: 'sm',
+    });
+    component.modal.close();
+    spyOn(component,'closeValue').and
+    .resolveTo(false);
+    const resp = emptyEmployee;
+    resp.managerId = 'id';
+    resp.id = 1;
+    await component.deleteEmp();
+
+    expect().nothing();
+  });
 });
