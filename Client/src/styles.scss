@@ -3,5 +3,9 @@ img {
   object-fit: cover;
 }
 
+.required {
+  color: red;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
