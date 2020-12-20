@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { EventEmitter } from '@angular/core';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -80,6 +81,21 @@ describe('AddEmployeeComponent', () => {
   it('shouldNotPost', () => {
     component.onSubmit();
     expect().nothing();
+  });
+
+  it('should select the file', () => {
+    let blob = new Blob([""], { type: 'image/png' });
+    blob["lastModifiedDate"] = "";
+    blob["name"] = "image";
+
+    let fakeF = <File>blob;
+
+    const event = {target:{files: [fakeF]}};
+    component.onFileSelected(event);
+    const request = httpMock.expectOne(`${iService.url}`);
+    expect(request.request.method).toBe('POST');
+    const resp = emptyEmployee.picture;
+    request.flush(resp);
   });
 
   it('shouldPostWithManager', () => {
