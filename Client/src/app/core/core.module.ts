@@ -4,11 +4,13 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DialogInformationComponent } from './components/dialog-information/dialog-information.component';
 
 
 @NgModule({
   declarations: [
     NavMenuComponent,
+    DialogInformationComponent,
   ],
   imports: [
     CommonModule,

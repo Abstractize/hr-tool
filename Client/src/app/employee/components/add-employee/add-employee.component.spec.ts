@@ -82,7 +82,22 @@ describe('AddEmployeeComponent', () => {
     expect().nothing();
   });
 
-  it('shouldPostWithManager', () => {
+  it('should select the file', () => {
+    let blob = new Blob([""], { type: 'image/png' });
+    blob["lastModifiedDate"] = "";
+    blob["name"] = "image";
+
+    let fakeF = <File>blob;
+
+    const event = {target:{files: [fakeF]}};
+    component.onFileSelected(event);
+    const request = httpMock.expectOne(`${iService.url}`);
+    expect(request.request.method).toBe('POST');
+    const resp = emptyEmployee.picture;
+    request.flush(resp);
+  });
+
+  it('should post with Manager', () => {
     const resp = emptyEmployee;
     resp.id = 0;
     component.imageValue = resp.picture;

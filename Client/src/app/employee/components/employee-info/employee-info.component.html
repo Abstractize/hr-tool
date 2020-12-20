@@ -27,9 +27,8 @@
             <div class="card-body">
               <h5 class="card-title">Time worked for the company:</h5>
               <p class="card-text">
-                Years: {{timeWorking.years}}
-                Months: {{timeWorking.months}}
-                Days: {{timeWorking.days}}
+                Years: {{ timeWorking.years }} Months:
+                {{ timeWorking.months }} Days: {{ timeWorking.days }}
               </p>
             </div>
           </div>
@@ -48,6 +47,7 @@
                   placeholder="{{ employee.employeeId }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="employeeId"
                   [readonly]="readonly.empId"
                 />
                 <div class="input-group-append">
@@ -70,6 +70,7 @@
                   placeholder="{{ employee.name }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="name"
                   [readonly]="readonly.name"
                 />
                 <div class="input-group-append">
@@ -94,6 +95,7 @@
                   placeholder="{{ employee.phoneNumber }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="phone"
                   [readonly]="readonly.phone"
                 />
                 <div class="input-group-append">
@@ -116,6 +118,7 @@
                   placeholder="{{ employee.email }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="email"
                   [readonly]="readonly.email"
                 />
                 <div class="input-group-append">
@@ -164,6 +167,7 @@
                   placeholder="{{ employee.managerId }}"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  formControlName="managerId"
                   [readonly]="readonly.managerId"
                 />
                 <div class="input-group-append">
@@ -183,6 +187,21 @@
     </div>
   </div>
   <div class="modal-footer">
+    <input
+      (change)="onFileSelected($event)"
+      type="file"
+      class="custom-file-input"
+      id="customFile"
+      hidden
+    />
+    <button
+      type="button"
+      class="btn btn-danger"
+      onclick="console.log(getElementById('customFile').click())"
+    >
+      Update Image
+    </button>
+
     <button
       type="button"
       class="btn btn-danger"
@@ -190,11 +209,7 @@
     >
       Delete
     </button>
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="activeModal.close('Close click')"
-    >
+    <button type="button" class="btn btn-secondary" (click)="update()">
       Update
     </button>
     <button

@@ -39,8 +39,8 @@ export class EmployeeListComponent implements OnInit {
     this.employees = this.allEmployees
       .filter(
         (employee) =>
-          employee.name.toLowerCase().includes(this.filter) ||
-          employee.employeeId.toLowerCase().includes(this.filter)
+          employee.name.toLowerCase().includes(this.filter.toLowerCase()) ||
+          employee.employeeId.toLowerCase().includes(this.filter.toLowerCase())
       )
       .sort((a, b) => (a.name < b.name ? -1 : 1));
   }
