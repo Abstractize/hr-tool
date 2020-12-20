@@ -22,7 +22,9 @@ describe('EmployeeInfoComponent', () => {
     new Image('', 1),
     '+(506)8888-8888',
     'email@gmail.com',
-    new Date()
+    new Date(),
+    'id',
+    0
   );
 
   beforeEach(async () => {
