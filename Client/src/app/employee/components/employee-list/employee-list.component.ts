@@ -7,6 +7,7 @@ import { EmployeeInfoComponent } from '../employee-info/employee-info.component'
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
+  styleUrls: ['./employee-list.component.scss'],
 })
 export class EmployeeListComponent implements OnInit {
   public allEmployees: Employee[];

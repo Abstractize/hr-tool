@@ -187,14 +187,12 @@
     </div>
   </div>
   <div class="modal-footer">
+    <div class="align-self-start mr-auto">
+      <button type="button" class="btn btn-danger" (click)="deleteEmp()">
+        Delete
+      </button>
+    </div>
 
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="deleteEmp()"
-    >
-      Delete
-    </button>
     <input
       (change)="onFileSelected($event)"
       type="file"

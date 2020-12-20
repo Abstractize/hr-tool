@@ -4,8 +4,22 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.navbar{
+  background-color: #0773c4;
+}
+
+.navbar-brand{
+  font-family: "intel-clear","tahoma",Helvetica,"helvetica",Arial,sans-serif;
+  color: whitesmoke;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #f5f5f5;
+  font-family: "intel-clear","tahoma",Helvetica,"helvetica",Arial,sans-serif;
+}
+
 html {
-  font-size: 14px;
+  font-size: 20px;
 }
 
 @media (min-width: 768px) {

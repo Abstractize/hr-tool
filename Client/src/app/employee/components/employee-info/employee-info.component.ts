@@ -120,7 +120,7 @@ export class EmployeeInfoComponent implements OnInit {
       });
       this.modalRef = this.modal.componentInstance;
       this.modalRef.title = 'Error';
-      this.modalRef.body = `Employee ${this.employee.name}'s info hasn't change`;
+      this.modalRef.body = `Employee ${this.employee.name}'s info hasn't changed`;
     }
   }
 
