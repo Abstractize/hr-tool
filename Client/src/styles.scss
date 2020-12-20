@@ -3,13 +3,17 @@ img {
   object-fit: cover;
 }
 
+.jumbotron {
+  background-color:#c4dce4 !important;
+}
+
 .required {
   color: red;
 }
 
 $theme-colors: (
-  "primary": #0071C5,
-  "secondary": #0BB8DB,
+  "primary":#0773c4,
+  "secondary": #016b97,
   "danger": #C41814,
 );
 
