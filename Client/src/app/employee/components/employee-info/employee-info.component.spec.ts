@@ -71,7 +71,7 @@ describe('EmployeeInfoComponent', () => {
 
   it('should update not update', () => {
     component.update();
-    expect(component.modalRef.title).toBe('Fail');
+    expect(component.modalRef.title).toBe('Error');
   });
 
   it('should update', () => {
