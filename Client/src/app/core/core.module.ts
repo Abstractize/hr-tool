@@ -22,4 +22,7 @@ import { DialogInformationComponent } from './components/dialog-information/dial
     NavMenuComponent
   ],
 })
+/**
+ * Module that contains all the application main components
+ */
 export class CoreModule { }

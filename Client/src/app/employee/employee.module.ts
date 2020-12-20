@@ -33,4 +33,7 @@ import { NgbDatepickerModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng
     EmployeeService
   ]
 })
+/**
+ * Module that contains all the employee related components.
+ */
 export class EmployeeModule { }

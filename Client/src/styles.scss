@@ -3,5 +3,53 @@ img {
   object-fit: cover;
 }
 
+@media (min-width: 1200px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: inherit !important;
+    margin: auto;
+  }
+}
+
+.jumbotron {
+  background-color: #c4dce4 !important;
+}
+
+.required {
+  color: red;
+}
+
+$theme-colors: (
+  "primary": #0071c5,
+  "secondary": #016b97,
+  "danger": #c41814,
+);
+
+h1 {
+  font-family: "intel-clear", "tahoma", Helvetica, "helvetica", Arial,
+    sans-serif;
+  font-style: bold;
+}
+
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+// Required
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+// Optional
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/images";
+@import "node_modules/bootstrap/scss/code";
+@import "node_modules/bootstrap/scss/grid";
+
+$body-bg: #ffffff;
+
+// Bootstrap and its default variables
+@import "node_modules/bootstrap/scss/bootstrap";

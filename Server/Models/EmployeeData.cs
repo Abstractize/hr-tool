@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models
 {
+    /// <summary>
+    /// EmployeeData model for Database.
+    /// </summary>
     public partial class EmployeeData
     {
         [Key]
@@ -36,7 +39,9 @@ namespace Server.Models
         [ForeignKey(nameof(IdManager))]
         [InverseProperty(nameof(Employee.EmployeeDatumIdManagerNavigations))]
         public virtual Employee IdManagerNavigation { get; set; }
-
+        /// <summary>
+        /// Returns Empty EmployeeData Model.
+        /// </summary>
         public static EmployeeData Empty { get => new EmployeeData{
                 IdEmployeeData = 0,
                 IdEmployee = 0,

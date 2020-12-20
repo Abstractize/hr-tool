@@ -1,6 +1,7 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3"
+
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">HR Tool</a>
@@ -25,10 +26,10 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Employee List</a>
+            <a class="nav-link" [routerLink]="['/']">Employee List</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/add']"
+            <a class="nav-link" [routerLink]="['/add']"
               >Add Employee</a
             >
           </li>
@@ -37,4 +38,3 @@
     </div>
   </nav>
 </header>
-

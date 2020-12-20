@@ -187,6 +187,12 @@
     </div>
   </div>
   <div class="modal-footer">
+    <div class="align-self-start mr-auto">
+      <button type="button" class="btn btn-danger" (click)="deleteEmp()">
+        Delete
+      </button>
+    </div>
+
     <input
       (change)="onFileSelected($event)"
       type="file"
@@ -195,19 +201,12 @@
       hidden
     />
     <button
+      class="upload"
       type="button"
-      class="btn btn-danger"
+      class="btn btn-secondary"
       onclick="console.log(getElementById('customFile').click())"
     >
-      Update Image
-    </button>
-
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="activeModal.close('Close click')"
-    >
-      Delete
+      Load Image
     </button>
     <button type="button" class="btn btn-secondary" (click)="update()">
       Update

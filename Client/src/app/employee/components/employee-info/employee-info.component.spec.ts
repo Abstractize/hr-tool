@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DialogInformationComponent } from 'src/app/core/components/dialog-information/dialog-information.component';
 import { Employee } from '../../models/employee';
 import { Image } from '../../models/image';
 import { EmployeeService } from '../../services/employee/employee.service';
@@ -15,6 +15,7 @@ describe('EmployeeInfoComponent', () => {
   let httpMock: HttpTestingController;
   let eService: EmployeeService;
   let iService: ImageService;
+  let modalService: NgbModal;
 
   const emptyEmployee: Employee = new Employee(
     'id',
@@ -22,14 +23,15 @@ describe('EmployeeInfoComponent', () => {
     new Image('', 1),
     '+(506)8888-8888',
     'email@gmail.com',
-    new Date()
+    new Date(),
+    '',
+    1
   );
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports:[
         HttpClientTestingModule,
-        RouterTestingModule.withRoutes([]),
       ],
       declarations: [ EmployeeInfoComponent ],
       providers: [NgbActiveModal, ImageService]
@@ -45,6 +47,7 @@ describe('EmployeeInfoComponent', () => {
     httpMock = TestBed.inject(HttpTestingController);
     eService = TestBed.inject(EmployeeService);
     iService = TestBed.inject(ImageService);
+    modalService = TestBed.inject(NgbModal);
   });
 
   it('should create', () => {
@@ -68,7 +71,7 @@ describe('EmployeeInfoComponent', () => {
 
   it('should update not update', () => {
     component.update();
-    expect(component.modalRef.title).toBe('Fail');
+    expect(component.modalRef.title).toBe('Error');
   });
 
   it('should update', () => {
@@ -100,5 +103,41 @@ describe('EmployeeInfoComponent', () => {
 
     request.flush([resp]);
     expect(component.modalRef.title).toBe('Success!');
+  });
+
+  it('should delete', async () => {
+    component.modal = modalService.open(DialogInformationComponent, {
+      centered: true,
+      size: 'sm',
+    });
+    component.modal.close();
+    spyOn(component,'closeValue').and
+    .resolveTo(true);
+    const resp = emptyEmployee;
+    resp.managerId = 'id';
+    resp.id = 1;
+    await component.deleteEmp();
+
+    const request = httpMock.expectOne(`${eService.url}/${component.employee.id}`);
+    expect(request.request.method).toBe('DELETE');
+
+    request.flush([resp]);
+    expect(component.modalRef.title).toBe('Success!');
+  });
+
+  it('should not delete', async () => {
+    component.modal = modalService.open(DialogInformationComponent, {
+      centered: true,
+      size: 'sm',
+    });
+    component.modal.close();
+    spyOn(component,'closeValue').and
+    .resolveTo(false);
+    const resp = emptyEmployee;
+    resp.managerId = 'id';
+    resp.id = 1;
+    await component.deleteEmp();
+
+    expect().nothing();
   });
 });

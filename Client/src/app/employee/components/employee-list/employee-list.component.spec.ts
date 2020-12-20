@@ -58,4 +58,19 @@ describe('EmployeeListComponent', () => {
     expect(component.employees).toBeTruthy();
   });
 
+  it('shouldFilterEmpty', () => {
+    const request = httpMock.expectOne(`${service.url}`);
+    expect(request.request.method).toBe('GET');
+
+    request.flush([]);
+    component.filter = 'id';
+    component.search();
+    expect(component.modalRefDialog.title).toBe('Error');
+  });
+
+  it('should open a modal', () => {
+    emptyEmployee.id = 1;
+    component.open(emptyEmployee);
+    expect(component.modalRef.employee.id).toBe(emptyEmployee.id);
+  });
 });

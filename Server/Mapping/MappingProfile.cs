@@ -7,6 +7,10 @@ namespace Server.Mapping
 {
     public class MappingProfile : Profile
     {
+        /// <summary>
+        /// Creates a Mapping Profile.
+        /// </summary>
+        /// <param name="employeeRepository">Repository that contains the employees</param>
         public MappingProfile(IEmployeeRepository employeeRepository)
         {
             string host = Environment.GetEnvironmentVariable("URL");

@@ -19,4 +19,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+/**
+ * Routing of the Employee Module.
+ */
 export class EmployeeRoutingModule { }

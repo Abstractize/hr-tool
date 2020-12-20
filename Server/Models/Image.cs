@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models
 {
+    /// <summary>
+    /// Image model for Database.
+    /// </summary>
     [Table("Image")]
     public partial class Image
     {
@@ -20,7 +23,9 @@ namespace Server.Models
 
         [InverseProperty(nameof(Models.EmployeeData.IdImageNavigation))]
         public virtual ICollection<EmployeeData> EmployeeData { get; set; }
-
+        /// <summary>
+        /// Returns Empty Image Model
+        /// </summary>
         public static Image Empty { get => new Image { IdImage = 0, Data = new byte[0] }; }
     }
 }

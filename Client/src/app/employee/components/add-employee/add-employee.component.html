@@ -3,7 +3,7 @@
   <div class="jumbotron">
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <label for="id">Employee ID</label>
+        <label for="id">Employee ID<span class="required">*</span></label>
         <input
           type="text"
           class="form-control"
@@ -13,25 +13,23 @@
           formControlName="employeeId"
           required
         />
-        <small *ngIf="formValues.controls['employeeId'].errors.required" id="emailHelp" class="form-text text-muted">Please enter the Employee Id</small>
       </div>
       <div class="col-md-6 mb-3">
-        <label for="id">Name</label>
+        <label for="id">Name<span class="required">*</span></label>
         <input
           type="text"
           class="form-control"
-          id="idEmp"
+          id="idEmpName"
           aria-describedby="idEmployee"
           placeholder="ex. Name Lastname1 Lastname2"
           formControlName="name"
           required
         />
-        <small *ngIf="formValues.controls['name'].errors.required" id="emailHelp" class="form-text text-muted">Please enter the Employee Name</small>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-12 mb-3">
-        <label for="id">Picture</label>
+        <label for="id">Picture<span class="required">*</span></label>
       </div>
     </div>
     <div class="form-row">
@@ -42,12 +40,12 @@
           src="{{ imageValue.url }}"
           alt="Employee Image Not Loaded. Try Again!"
           width="300"
-          height="200"
+          height="400"
         />
       </div>
       <div class="col-md-1 mb-3"></div>
       <div class="col-md-6 mb-3">
-        <input (change)="onFileSelected($event)"type="file" class="custom-file-input" id="customFile" />
+        <input (change)="onFileSelected($event) "type="file" class="custom-file-input" id="customFile" />
         <label class="custom-file-label" for="customFile"
           >Choose an Image</label
         >
@@ -56,12 +54,11 @@
     <div class="form-row">
       <div class="col-md-2 mb-3"></div>
       <div class="col-md-10 mb-3">
-        <small *ngIf="!imageValue.id" id="emailHelp" class="form-text text-muted">Please Upload an Image</small>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <label for="id">Phone</label>
+        <label for="id">Phone<span class="required">*</span></label>
         <input
           type="text"
           class="form-control"
@@ -70,11 +67,9 @@
           placeholder="+(506)-8888-8888"
           formControlName="phone"
         />
-        <small *ngIf="formValues.controls['phone'].errors.required" id="emailHelp" class="form-text text-muted">Please enter the Employee Phone Number</small>
-        <small *ngIf="formValues.controls['phone'].errors" id="emailHelp" class="form-text text-muted">Phone Number is incorrect</small>
       </div>
       <div class="col-md-6 mb-3">
-        <label for="id">Email</label>
+        <label for="id">Email<span class="required">*</span></label>
         <input
           type="email"
           class="form-control"
@@ -83,13 +78,11 @@
           placeholder="email@email.com"
           formControlName="email"
         />
-        <small *ngIf="formValues.controls['email'].errors.required" id="emailHelp" class="form-text text-muted">Please enter the Employee Email</small>
-        <small *ngIf="formValues.controls['email'].errors" id="emailHelp" class="form-text text-muted">Email is incorrect</small>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <label for="id">Hire Date</label>
+        <label for="id">Hire Date<span class="required">*</span></label>
         <input
           type="date"
           class="form-control"
@@ -97,7 +90,6 @@
           aria-describedby="idEmployee"
           formControlName="hire"
         />
-        <small *ngIf="formValues.controls['employeeId'].errors.required" id="emailHelp" class="form-text text-muted">Please enter the Hire Date</small>
       </div>
       <div class="col-md-6 mb-3">
         <label for="id">Manger Id</label>
