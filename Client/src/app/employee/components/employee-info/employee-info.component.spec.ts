@@ -22,9 +22,7 @@ describe('EmployeeInfoComponent', () => {
     new Image('', 1),
     '+(506)8888-8888',
     'email@gmail.com',
-    new Date(),
-    'id',
-    0
+    new Date()
   );
 
   beforeEach(async () => {
@@ -79,6 +77,27 @@ describe('EmployeeInfoComponent', () => {
     const request = httpMock.expectOne(`${eService.url}`);
     expect(request.request.method).toBe('PUT');
     const resp = emptyEmployee;
+    request.flush([resp]);
+    expect(component.modalRef.title).toBe('Success!');
+  });
+
+  it('should update with missing parameteres', () => {
+    const resp = emptyEmployee;
+    resp.managerId = 'id';
+    resp.id = 1;
+    component.formValues.patchValue({
+      employeeId: resp.employeeId,
+      name: resp.name,
+      phone: resp.phoneNumber,
+      email: resp.email,
+      hire: resp.hireDate,
+      managerId: resp.employeeId
+    })
+    component.formValues.markAllAsTouched();
+    component.update();
+    const request = httpMock.expectOne(`${eService.url}`);
+    expect(request.request.method).toBe('PUT');
+
     request.flush([resp]);
     expect(component.modalRef.title).toBe('Success!');
   });

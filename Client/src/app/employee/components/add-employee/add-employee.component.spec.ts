@@ -97,7 +97,7 @@ describe('AddEmployeeComponent', () => {
     request.flush(resp);
   });
 
-  it('shouldPostWithManager', () => {
+  it('should post with Manager', () => {
     const resp = emptyEmployee;
     resp.id = 0;
     component.imageValue = resp.picture;
