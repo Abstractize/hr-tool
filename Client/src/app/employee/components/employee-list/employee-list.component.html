@@ -1,6 +1,8 @@
 <h1 id="tableLabel">Employees</h1>
 
-<p *ngIf="!allEmployees"><em>Loading...</em></p>
+<p *ngIf="!allEmployees">
+  <ngx-bootstrap-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#016b97" type = "grow" [fullScreen] = "true" loadingText = "Loading Employees. Please Wait!"></ngx-bootstrap-spinner>
+</p>
 <div class="jumbotron">
   <div class="form-row">
     <div class="col-md-12 mb-3">

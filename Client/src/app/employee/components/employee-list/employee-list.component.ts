@@ -4,6 +4,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
 import { DialogInformationComponent } from 'src/app/core/components/dialog-information/dialog-information.component';
+import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 
 @Component({
   selector: 'app-employee-list',
@@ -27,8 +28,10 @@ export class EmployeeListComponent implements OnInit {
    */
   constructor(
     service: EmployeeService,
-    private readonly modalService: NgbModal
+    private readonly modalService: NgbModal,
+    private spinner: NgxSpinnerService
   ) {
+    this.spinner.show();
     service.getAll().subscribe((result) => {
       this.allEmployees = result;
       this.search();
@@ -60,7 +63,7 @@ export class EmployeeListComponent implements OnInit {
           employee.employeeId.toLowerCase().includes(this.filter.toLowerCase())
       )
       .sort((a, b) => (a.name < b.name ? -1 : 1));
-    if (this.employees.length < 1) {
+    if ((this.employees.length < 1) && (this.allEmployees.length > 0)) {
       this.modal = this.modalService.open(DialogInformationComponent, {
         centered: true,
         size: 'sm',

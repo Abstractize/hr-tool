@@ -9,6 +9,7 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeInfoComponent } from './components/employee-info/employee-info.component';
 import { NgbDatepickerModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-bootstrap-spinner';
 
 
 
@@ -26,7 +27,8 @@ import { NgbDatepickerModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng
     ReactiveFormsModule,
     NgbModule,
     NgbModalModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    NgxSpinnerModule
   ],
   providers: [
     ImageService,
