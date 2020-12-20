@@ -5,11 +5,14 @@ import { environment } from '../environments/environment';
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
+
+/**
+ * Component that contains the application
+ */
 export class AppComponent {
   title = 'HR Tool';
   env = environment;
   constructor(){
-    console.log(this.env.APIEndpoint);
   }
 
 }

@@ -9,4 +9,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
+/**
+ * Module that contains the main application routing.
+ */
 export class AppRoutingModule { }

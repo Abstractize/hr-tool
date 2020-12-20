@@ -6,21 +6,19 @@ import {
   NgbModalRef,
 } from '@ng-bootstrap/ng-bootstrap';
 import { DialogInformationComponent } from 'src/app/core/components/dialog-information/dialog-information.component';
+import { ITimeWorking } from '../../interfaces/iTimeWorking';
 import { Employee } from '../../models/employee';
 import { Image } from '../../models/image';
 import { EmployeeService } from '../../services/employee/employee.service';
 import { ImageService } from '../../services/image/image.service';
-
-interface ITimeWorking {
-  years: number;
-  months: number;
-  days: number;
-}
 @Component({
   selector: 'app-employee-info',
   templateUrl: './employee-info.component.html',
   styleUrls: ['./employee-info.component.scss'],
 })
+/**
+ * Popup that contains the user information.
+ */
 export class EmployeeInfoComponent implements OnInit {
   modal: NgbModalRef;
   imageChange: boolean = false;
@@ -41,7 +39,13 @@ export class EmployeeInfoComponent implements OnInit {
     hireDate: true,
     managerId: true,
   };
-
+/**
+ * Creates a Popup with an employee info.
+ * @param activeModal modal active at the moment.
+ * @param imageService service to get or post the employee image.
+ * @param employeeService service to put or delete the user info.
+ * @param modalService service that manages the popups.
+ */
   constructor(
     public activeModal: NgbActiveModal,
     private readonly imageService: ImageService,
@@ -71,7 +75,10 @@ export class EmployeeInfoComponent implements OnInit {
       days: today.getDate() - this.employee.hireDate.getDate(),
     };
   }
-
+  /**
+   * Loads image to the server.
+   * @param event event containing the image.
+   */
   async onFileSelected(event) {
     const file: File = <File>event.target.files[0];
     const fd: FormData = new FormData();
@@ -83,7 +90,9 @@ export class EmployeeInfoComponent implements OnInit {
       this.imageChange = true;
     });
   }
-
+  /**
+   * Updates the Form Values.
+   */
   update() {
     if (
       (this.formValues.touched && this.formValues.valid) ||
@@ -107,7 +116,7 @@ export class EmployeeInfoComponent implements OnInit {
         });
         this.modalRef = this.modal.componentInstance;
         this.modalRef.title = 'Success!';
-        this.modalRef.body = `Employee ${res.name}, ID: ${res.id}, has been updated`;
+        this.modalRef.body = `Employee ${res.name}, ID: ${res.employeeId}, has been updated`;
         this.modal.closed.subscribe(() => {
           this.activeModal.close();
           window.location.reload();
@@ -123,7 +132,9 @@ export class EmployeeInfoComponent implements OnInit {
       this.modalRef.body = `Employee ${this.employee.name}'s info hasn't changed`;
     }
   }
-
+  /**
+   * Deletes the employee.
+   */
   async deleteEmp() {
     this.modal = this.modalService.open(DialogInformationComponent, {
       centered: true,
@@ -144,12 +155,14 @@ export class EmployeeInfoComponent implements OnInit {
         });
         this.modalRef = this.modal.componentInstance;
         this.modalRef.title = 'Success!';
-        this.modalRef.body = `Employee ${res.name}, ID: ${res.id}, has been deleted`;
+        this.modalRef.body = `Employee ${res.name}, ID: ${res.employeeId}, has been deleted`;
         this.modal.closed.subscribe(() => window.location.reload());
       });
     }
   }
-
+  /**
+   * Returns popup value when popup is closed.
+   */
   async closeValue(): Promise<boolean> {
     return this.modal.closed.toPromise();
   }

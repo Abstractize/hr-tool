@@ -12,6 +12,9 @@ import { ImageService } from '../../services/image/image.service';
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
 })
+/**
+ * Form that add the employees.
+ */
 export class AddEmployeeComponent implements OnInit {
   modal: NgbModalRef;
   modalRef: DialogInformationComponent;
@@ -27,7 +30,13 @@ export class AddEmployeeComponent implements OnInit {
     hire: new FormControl(new Date(), [Validators.required]),
     managerId: new FormControl(''),
   });
-
+  /**
+   * Creates a AddEmployeeComponent
+   * @param imageService service to post the employee image.
+   * @param employeeService service to post the employe information.
+   * @param router router the manages the page routing.
+   * @param modalService service that manages the popups.
+   */
   constructor(
     private readonly imageService: ImageService,
     private readonly employeeService: EmployeeService,
@@ -36,7 +45,10 @@ export class AddEmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-
+  /**
+   * Loads image to the server.
+   * @param event event containing the image.
+   */
   async onFileSelected(event) {
     const file: File = <File>event.target.files[0];
     const fd: FormData = new FormData();
@@ -47,7 +59,9 @@ export class AddEmployeeComponent implements OnInit {
       .post(fd)
       .subscribe((response) => (this.imageValue = response));
   }
-
+  /**
+   * Submits the Form Values.
+   */
   onSubmit() {
     if (this.formValues.valid && this.imageValue.id) {
       const values = this.formValues.value;
@@ -68,17 +82,17 @@ export class AddEmployeeComponent implements OnInit {
         });
         this.modalRef = this.modal.componentInstance;
         this.modalRef.title = 'Success!';
-        this.modalRef.body = `Employee ${res.name}, ID: ${res.id}, has been added`;
+        this.modalRef.body = `Employee ${res.name}, ID: ${res.employeeId}, has been added.`;
         this.modal.closed.subscribe(() => this.router.navigateByUrl('/'));
       });
-    }else{
+    } else {
       this.modal = this.modalService.open(DialogInformationComponent, {
         centered: true,
         size: 'sm',
       });
       this.modalRef = this.modal.componentInstance;
       this.modalRef.title = 'Error';
-      this.modalRef.body = "Make sure you're not missing required information or is written correctly";
+      this.modalRef.body ="Make sure you're not missing required information or is written correctly";
     }
   }
 }

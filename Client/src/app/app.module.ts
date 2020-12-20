@@ -20,5 +20,8 @@ import { EmployeeModule } from './employee/employee.module';
   ],
   bootstrap: [AppComponent]
 })
+/**
+ * Module that contains the main application
+ */
 export class AppModule { }
 

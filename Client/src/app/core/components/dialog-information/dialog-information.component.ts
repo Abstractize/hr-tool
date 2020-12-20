@@ -5,14 +5,18 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-dialog-information',
   templateUrl: './dialog-information.component.html',
 })
+/**
+ * Modal or Popup that shows information.
+ */
 export class DialogInformationComponent implements OnInit {
   @Input() title: string = '';
   @Input() body: string = '';
   @Input() needsConfirmation = false;
+  /**
+   * Creates a Popup that informs.
+   * @param activeModal Modal that is activated at the moment.
+   */
+  constructor(public activeModal: NgbActiveModal) {}
 
-  constructor(public activeModal: NgbActiveModal) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
