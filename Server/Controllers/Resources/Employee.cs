@@ -11,6 +11,9 @@
         public System.DateTime HireDate { get; set; }
         public string ManagerId { get; set; }
 
+        /// <summary>
+        /// Returns an Empty Employee
+        /// </summary>
         public static Employee Empty { get =>
                 new Employee
                 {

@@ -6,19 +6,36 @@ using Server.Models;
 
 namespace Server.Persistence
 {
+    /// <summary>
+    /// Context the refers to the Employee Database that stores the Employee Information.
+    /// </summary>
     public partial class EmployeeContext : DbContext
     {
+        /// <summary>
+        /// Creates an Employee Context.
+        /// </summary>
         public EmployeeContext()
         {
         }
-
+        /// <summary>
+        /// Creates an Employee Context with the given options.
+        /// </summary>
+        /// <param name="options">Options of the context</param>
         public EmployeeContext(DbContextOptions<EmployeeContext> options)
             : base(options)
         {
         }
-
+        /// <summary>
+        /// Set that stores the employees.
+        /// </summary>
         public virtual DbSet<Employee> Employees { get; set; }
+        /// <summary>
+        /// Set that stores the employees data.
+        /// </summary>
         public virtual DbSet<EmployeeData> EmployeeData { get; set; }
+        /// <summary>
+        /// Set that stores the employees images.
+        /// </summary>
         public virtual DbSet<Image> Images { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
