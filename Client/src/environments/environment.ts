@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIEndpoint: "https://hrtool-server.azurewebsites.net"
+  APIEndpoint: "https://localhost:5001"
 };
 
 /*

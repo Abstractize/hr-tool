@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbActiveModal,
+  NgbModal,
+  NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap';
 import { DialogInformationComponent } from 'src/app/core/components/dialog-information/dialog-information.component';
 import { Employee } from '../../models/employee';
 import { Image } from '../../models/image';
@@ -19,7 +23,7 @@ interface ITimeWorking {
   styleUrls: ['./employee-info.component.scss'],
 })
 export class EmployeeInfoComponent implements OnInit {
-  modal;
+  modal: NgbModalRef;
   imageChange: boolean = false;
   modalRef: DialogInformationComponent;
   employee: Employee;
@@ -43,8 +47,7 @@ export class EmployeeInfoComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private readonly imageService: ImageService,
     private readonly employeeService: EmployeeService,
-    private readonly modalService: NgbModal,
-    private readonly router: Router
+    private readonly modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -76,16 +79,17 @@ export class EmployeeInfoComponent implements OnInit {
 
     fd.append('image', file, file.name);
 
-    this.imageService
-      .post(fd)
-      .subscribe((response) => {
-        this.imageValue = response;
-        this.imageChange = true;
-      });
+    this.imageService.post(fd).subscribe((response) => {
+      this.imageValue = response;
+      this.imageChange = true;
+    });
   }
 
   update() {
-    if ((this.formValues.touched && this.formValues.valid) || this.imageChange) {
+    if (
+      (this.formValues.touched && this.formValues.valid) ||
+      this.imageChange
+    ) {
       const values = this.formValues.value;
       let value = new Employee(
         values.employeeId,
@@ -102,12 +106,13 @@ export class EmployeeInfoComponent implements OnInit {
           centered: true,
           size: 'sm',
         });
-        this.modalRef = this.modal
-          .componentInstance;
+        this.modalRef = this.modal.componentInstance;
         this.modalRef.title = 'Success!';
         this.modalRef.body = `Employee ${res.name}, ID: ${res.id}, has been updated`;
-        this.modal.closed.subscribe(() => this.activeModal.close());
-        this.router.navigateByUrl('/')
+        this.modal.closed.subscribe(() => {
+          this.activeModal.close();
+          window.location.reload();
+        });
       });
     } else {
       this.modal = this.modalService.open(DialogInformationComponent, {
@@ -118,5 +123,35 @@ export class EmployeeInfoComponent implements OnInit {
       this.modalRef.title = 'Fail';
       this.modalRef.body = `Employee ${this.employee.name}'s info hasn't change`;
     }
+  }
+
+  async deleteEmp() {
+    this.modal = this.modalService.open(DialogInformationComponent, {
+      centered: true,
+      size: 'sm',
+    });
+    this.modalRef = this.modal.componentInstance;
+    this.modalRef.needsConfirmation = true;
+    this.modalRef.title = 'WARNING!';
+    this.modalRef.body = `Are you sure you want to delete the employee ${this.employee.name}?`;
+    let deleted: boolean = false;
+    await this.closeValue().then((value) => (deleted = value));
+    console.log(deleted);
+    if (deleted) {
+      this.employeeService.delete(this.employee.id).subscribe((res) => {
+        this.modal = this.modalService.open(DialogInformationComponent, {
+          centered: true,
+          size: 'sm',
+        });
+        this.modalRef = this.modal.componentInstance;
+        this.modalRef.title = 'Success!';
+        this.modalRef.body = `Employee ${res.name}, ID: ${res.id}, has been deleted`;
+        this.modal.closed.subscribe(() => window.location.reload());
+      });
+    }
+  }
+
+  async closeValue(): Promise<boolean> {
+    return this.modal.closed.toPromise();
   }
 }

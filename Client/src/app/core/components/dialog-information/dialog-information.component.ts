@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class DialogInformationComponent implements OnInit {
   @Input() title: string = '';
   @Input() body: string = '';
+  @Input() needsConfirmation = false;
 
   constructor(public activeModal: NgbActiveModal) { }
 

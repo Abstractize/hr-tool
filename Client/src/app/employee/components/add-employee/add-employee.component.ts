@@ -33,7 +33,6 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   async onFileSelected(event){
-    console.log(event.target);
     const file: File = <File> event.target.files[0];
     const fd: FormData = new FormData();
 
