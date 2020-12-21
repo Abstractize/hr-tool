@@ -19,7 +19,7 @@ export class EmployeeListComponent implements OnInit {
   public modalRefDialog: DialogInformationComponent;
   public allEmployees: Employee[];
   public employees: Employee[];
-  public filter: string;
+  public filter: string = '';
   public modalRef: EmployeeInfoComponent;
   /**
    * Creates an EmployeeComponent
